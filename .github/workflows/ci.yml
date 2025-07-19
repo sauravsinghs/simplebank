@@ -20,6 +20,8 @@ jobs:
           POSTGRES_USER: root
           POSTGRES_PASSWORD: secret
           POSTGRES_DB: simple_bank
+        ports:
+          - 5432:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -38,7 +40,7 @@ jobs:
         run: |
           curl -L https://github.com/golang-migrate/migrate/releases/download/v4.18.3/migrate.linux-amd64.tar.gz -o migrate.tar.gz
           tar xvf migrate.tar.gz
-          sudo mv migrate /usr/bin/
+          sudo mv migrate /usr/bin/migrate
           which migrate
 
       - name: Run migrations
